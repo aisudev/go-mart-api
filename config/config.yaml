@@ -1,0 +1,5 @@
+postgresql:
+  user: "postgres"
+  password: "3298"
+  dbname: "crud"
+  port: "5432"
