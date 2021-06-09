@@ -33,3 +33,7 @@ func (u *martUsecase) UpdateMart(id uint, mart *domain.Mart) error {
 func (u *martUsecase) DeleteMart(id uint) error {
 	return u.repo.DeleteMart(id)
 }
+
+func (u *martUsecase) GetMartProducts(id uint) ([]domain.MartProduct, error) {
+	return u.repo.GetMartProducts(id)
+}

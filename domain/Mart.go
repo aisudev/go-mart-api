@@ -15,12 +15,19 @@ type Mart struct {
 	Products []Product `json:"-" gorm:"foreignKey:MartID"`
 }
 
+type MartProduct struct {
+	Name   string `json:"name"`
+	Amount int    `json:"amount"`
+	Price  int    `json:"price"`
+}
+
 type MartUsecase interface {
 	CreateMart(*Mart) error
 	GetMart(uint) (*Mart, error)
 	GetAllMart() ([]Mart, error)
 	UpdateMart(uint, *Mart) error
 	DeleteMart(uint) error
+	GetMartProducts(uint) ([]MartProduct, error)
 }
 
 type MartRepository interface {
@@ -29,4 +36,5 @@ type MartRepository interface {
 	GetAllMart() ([]Mart, error)
 	UpdateMart(uint, *Mart) error
 	DeleteMart(uint) error
+	GetMartProducts(uint) ([]MartProduct, error)
 }

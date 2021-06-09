@@ -8,6 +8,8 @@ Content-Type: application/json
 ###
 GET http://localhost:8000/mart/1
 ###
+GET http://localhost:8000/mart/1/products
+###
 GET http://localhost:8000/mart
 ###
 PUT http://localhost:8000/mart/1

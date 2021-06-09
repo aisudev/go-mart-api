@@ -18,6 +18,7 @@ func NewMartHandler(e *echo.Group, u domain.MartUsecase) *Handler {
 
 	e.POST("/mart", h.CreateMartHandler)
 	e.GET("/mart/:id", h.GetMarthandler)
+	e.GET("/mart/:id/products", h.GetMartProductHandler)
 	e.GET("/mart", h.GetAllMartHandler)
 	e.PUT("/mart/:id", h.UpdateMartHandler)
 	e.DELETE("/mart/:id", h.DeleteMartHandler)
@@ -97,5 +98,21 @@ func (h *Handler) DeleteMartHandler(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, utils.Response(true, nil, nil))
+
+}
+
+func (h *Handler) GetMartProductHandler(c echo.Context) error {
+
+	param := c.Param("id")
+	id, _ := strconv.ParseUint(param, 10, 32)
+
+	reqMap := []domain.MartProduct{}
+	var err error
+
+	if reqMap, err = h.usecase.GetMartProducts(uint(id)); err != nil {
+		return c.JSON(http.StatusBadRequest, utils.Response(false, err, nil))
+	}
+
+	return c.JSON(http.StatusOK, utils.Response(true, nil, reqMap))
 
 }

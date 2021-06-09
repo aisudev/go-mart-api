@@ -66,3 +66,14 @@ func (r *martRepository) DeleteMart(id uint) error {
 
 	return nil
 }
+
+func (r *martRepository) GetMartProducts(id uint) ([]domain.MartProduct, error) {
+
+	reqMap := []domain.MartProduct{}
+
+	if err := r.db.Debug().Table("marts").Select("products.name, products.amount, products.price").Where("marts.id = ?", id).Joins("JOIN products on marts.id = products.mart_id").Scan(&reqMap).Error; err != nil {
+		return nil, err
+	}
+
+	return reqMap, nil
+}

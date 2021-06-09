@@ -3,7 +3,7 @@ Content-Type: application/json
 
 {
     "mart_id":1,
-    "name":"xxx",
+    "name":"mango",
     "amount":9,
     "price":20
 }
