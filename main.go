@@ -13,6 +13,10 @@ import (
 	martDelivery "viper/feature/Mart/delivery"
 	martRepository "viper/feature/Mart/repository"
 	martUsecase "viper/feature/Mart/usecase"
+
+	productDelivery "viper/feature/Product/delivery"
+	productRepository "viper/feature/Product/repository"
+	productUsecase "viper/feature/Product/usecase"
 )
 
 var postgresDB *gorm.DB
@@ -45,6 +49,11 @@ func main() {
 	martDelivery.NewMartHandler(group,
 		martUsecase.NewMartUsecase(
 			martRepository.NewMartRepository(postgresDB),
+		))
+
+	productDelivery.NewProductHandler(group,
+		productUsecase.NewProductUsercase(
+			productRepository.NewProductRepository(postgresDB),
 		))
 
 	// AutoMigrate()

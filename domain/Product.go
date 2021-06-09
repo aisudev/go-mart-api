@@ -13,21 +13,21 @@ type Product struct {
 	Amount   int            `json:"amount"`
 	Price    int            `json:"price"`
 	CreateAt time.Time      `json:"-"`
-	DeleteAt gorm.DeletedAt `json:"_"`
+	DeleteAt gorm.DeletedAt `json:"-"`
 }
 
 type ProductUsecase interface {
 	CreateProduct(*Product) error
-	GetProduct(string) (*Product, error)
+	GetProduct(uint) (*Product, error)
 	GetAllProduct() ([]Product, error)
-	UpdateProduct(string, *Product) error
-	DeleteProduct(string) error
+	UpdateProduct(uint, *Product) error
+	DeleteProduct(uint) error
 }
 
 type ProductRepository interface {
 	CreateProduct(*Product) error
-	GetProduct(string) (*Product, error)
+	GetProduct(uint) (*Product, error)
 	GetAllProduct() ([]Product, error)
-	UpdateProduct(string, *Product) error
-	DeleteProduct(string) error
+	UpdateProduct(uint, *Product) error
+	DeleteProduct(uint) error
 }

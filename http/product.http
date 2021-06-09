@@ -1,0 +1,25 @@
+POST http://localhost:8000/product
+Content-Type: application/json
+
+{
+    "mart_id":1,
+    "name":"xxx",
+    "amount":9,
+    "price":20
+}
+
+###
+GET http://localhost:8000/product
+###
+GET http://localhost:8000/product/1
+###
+PUT http://localhost:8000/product/1
+Content-Type: application/json
+
+{
+    "name": "Orange"
+}
+###
+DELETE  http://localhost:8000/product/1
+
+
